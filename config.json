@@ -1,0 +1,27 @@
+{
+  "title": "ELEIÇÃO 2026 / INTERATIVO",
+  "username": "",
+  "timerSeconds": 300,
+  "participants": [
+    {
+      "name": "PARTICIPANTE 1",
+      "color": "#ed3434",
+      "command": "13",
+      "photo": "",
+      "gifts": [
+        {"name": "Rosa", "points": 1},
+        {"name": "Presente", "points": 5}
+      ]
+    },
+    {
+      "name": "PARTICIPANTE 2",
+      "color": "#2878ed",
+      "command": "22",
+      "photo": "",
+      "gifts": [
+        {"name": "Rosa Branca", "points": 1},
+        {"name": "Presente", "points": 5}
+      ]
+    }
+  ]
+}

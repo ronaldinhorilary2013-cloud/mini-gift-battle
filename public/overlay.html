@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mini Gift Battle - Placar</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="overlay-body">
+
+<main class="scoreboard">
+
+<header class="score-header">
+  <div>
+    <div class="eyebrow">TRANSMISSÃO AO VIVO</div>
+    <h1 id="boardTitle">ELEIÇÃO 2026 / INTERATIVO</h1>
+  </div>
+  <div class="live-pill"><span></span> AO VIVO</div>
+</header>
+
+<section class="summary-grid">
+  <div class="summary-card">
+    <small>TEMPO RESTANTE</small>
+    <strong id="timer">00:05:00</strong>
+  </div>
+  <div class="summary-card">
+    <small>TOTAL DE PONTOS</small>
+    <strong id="total">0</strong>
+  </div>
+  <div class="summary-card">
+    <small>DIFERENÇA</small>
+    <strong id="difference">0</strong>
+  </div>
+  <div class="summary-card">
+    <small>NA FRENTE</small>
+    <strong id="leader">EMPATE</strong>
+  </div>
+</section>
+
+<section class="contestants">
+
+<article class="contestant" id="card0">
+  <div class="contestant-top">
+    <div class="candidate-photo" id="photo0">1</div>
+    <div class="candidate-info">
+      <small>PARTICIPANTE 01</small>
+      <h2 id="name0">PARTICIPANTE 1</h2>
+      <div class="command">VOTE: <b id="command0">13</b></div>
+    </div>
+  </div>
+  <div class="score" id="score0">0</div>
+  <div class="score-caption">PONTOS</div>
+  <div class="progress-track">
+    <div id="bar0" class="progress-fill"></div>
+  </div>
+  <div class="percentage" id="percent0">0%</div>
+  <div class="gift-heading">PRESENTES QUE VALEM PONTOS</div>
+  <div class="gift-list" id="gifts0"></div>
+</article>
+
+<article class="contestant" id="card1">
+  <div class="contestant-top">
+    <div class="candidate-photo" id="photo1">2</div>
+    <div class="candidate-info">
+      <small>PARTICIPANTE 02</small>
+      <h2 id="name1">PARTICIPANTE 2</h2>
+      <div class="command">VOTE: <b id="command1">22</b></div>
+    </div>
+  </div>
+  <div class="score" id="score1">0</div>
+  <div class="score-caption">PONTOS</div>
+  <div class="progress-track">
+    <div id="bar1" class="progress-fill"></div>
+  </div>
+  <div class="percentage" id="percent1">0%</div>
+  <div class="gift-heading">PRESENTES QUE VALEM PONTOS</div>
+  <div class="gift-list" id="gifts1"></div>
+</article>
+
+</section>
+
+<section class="activity-panel">
+  <div class="activity-title">
+    <div>
+      <div class="eyebrow">ATUALIZAÇÕES</div>
+      <h2>Últimas atividades</h2>
+    </div>
+    <span id="connectionStatus">AGUARDANDO</span>
+  </div>
+  <div id="activity" class="activity-list">
+    <div class="empty">Aguardando votos e presentes...</div>
+  </div>
+</section>
+
+<footer>MINI GIFT BATTLE · PLACAR EM TEMPO REAL</footer>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/overlay.js"></script>
+</body>
+</html>
