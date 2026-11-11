@@ -2,293 +2,109 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080b14">
-<title>Mini Gift Battle</title>
-
+<title>Mini Gift Battle - ADM</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #080b14;
-  color: white;
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-}
-
-header {
-  padding: 22px 16px;
-  text-align: center;
-  border-bottom: 1px solid #202638;
-}
-
-.logo {
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-
-.logo span {
-  color: #a855f7;
-}
-
-.status {
-  margin-top: 9px;
-  color: #22c55e;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.container {
-  width: 100%;
-  max-width: 850px;
-  margin: auto;
-  padding: 24px 15px;
-}
-
-.timer {
-  text-align: center;
-  margin: 10px 0 28px;
-}
-
-.timer small {
-  color: #8b93a7;
-  letter-spacing: 3px;
-}
-
-#clock {
-  font-size: 48px;
-  font-weight: 900;
-  margin-top: 8px;
-  font-variant-numeric: tabular-nums;
-}
-
-.battle {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 13px;
-}
-
-.player {
-  background: #111725;
-  border: 1px solid #283248;
-  border-radius: 18px;
-  padding: 20px 12px;
-  text-align: center;
-  min-width: 0;
-}
-
-.player.red {
-  border-top: 3px solid #ef4444;
-}
-
-.player.blue {
-  border-top: 3px solid #3b82f6;
-}
-
-.avatar {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #252d40;
-  margin-bottom: 13px;
-}
-
-.name {
-  font-size: 14px;
-  font-weight: bold;
-  overflow-wrap: anywhere;
-}
-
-.score {
-  font-size: 35px;
-  font-weight: 900;
-  margin: 15px 0;
-  font-variant-numeric: tabular-nums;
-}
-
-.red .score {
-  color: #ef4444;
-}
-
-.blue .score {
-  color: #3b82f6;
-}
-
-.bar {
-  height: 8px;
-  background: #252d40;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.fill {
-  height: 100%;
-  width: 50%;
-  transition: width .5s ease;
-}
-
-.red .fill {
-  background: #ef4444;
-}
-
-.blue .fill {
-  background: #3b82f6;
-}
-
-.percent {
-  display: block;
-  margin-top: 10px;
-  font-size: 12px;
-  color: #929bb0;
-}
-
-.result {
-  margin-top: 22px;
-  padding: 20px;
-  text-align: center;
-  background: #111725;
-  border: 1px solid #283248;
-  border-radius: 15px;
-}
-
-.result small {
-  color: #929bb0;
-  letter-spacing: 2px;
-}
-
-#leader {
-  margin-top: 10px;
-  font-size: 21px;
-  font-weight: 900;
-}
-
-footer {
-  text-align: center;
-  padding: 25px 10px;
-  color: #687187;
-  font-size: 11px;
-}
-
-@media(max-width: 350px) {
-  .score { font-size: 27px; }
-  .avatar { width: 60px; height: 60px; }
-}
+*{box-sizing:border-box}
+body{margin:0;background:#080b14;color:#fff;font-family:Arial,sans-serif;padding:18px}
+main{max-width:750px;margin:auto}
+header{padding:18px 0;border-bottom:1px solid #283248;margin-bottom:22px}
+h1{font-size:25px;margin:0}
+h1 span{color:#a855f7}
+small,.muted{color:#929bb0}
+.panel{background:#111725;border:1px solid #283248;border-radius:16px;padding:18px;margin-bottom:16px}
+h2{font-size:17px;margin:0 0 16px}
+label{display:block;font-size:12px;color:#aab4c8;margin:13px 0 7px}
+input,textarea{width:100%;background:#080e1b;border:1px solid #303c53;border-radius:9px;padding:12px;color:white;font-size:15px}
+input[type=color]{height:45px;padding:4px}
+textarea{min-height:90px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{border:0;border-radius:10px;padding:13px;background:#7c3aed;color:white;font-weight:bold;font-size:14px;margin:5px 3px 5px 0}
+button.secondary{background:#27344a}
+button.danger{background:#b42335}
+button.green{background:#16834b}
+a{color:#a78bfa}
+.preview{width:75px;height:75px;border-radius:50%;object-fit:cover;background:#27344a;margin-top:10px}
+.message{color:#65e6a0;font-size:13px;margin-top:12px}
+@media(max-width:430px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
-
+<main>
 <header>
-  <div class="logo">MINI <span>GIFT</span> BATTLE</div>
-  <div class="status">● LIVE INTERACTIVE</div>
+<h1>MINI <span>GIFT</span> BATTLE</h1>
+<p class="muted">PAINEL ADMINISTRATIVO</p>
+<a href="/overlay" target="_blank">Abrir placar da LIVE ↗</a>
 </header>
 
-<main class="container">
+<section class="panel">
+<h2>Configuração da transmissão</h2>
+<label>Título da batalha</label>
+<input id="title" value="MINI GIFT BATTLE">
+<label>Usuário do TikTok (sem @ opcional)</label>
+<input id="username" placeholder="usuario_tiktok">
+<label>Tempo da batalha</label>
+<div class="grid">
+<div><label>Horas</label><input id="hours" type="number" min="0" value="0"></div>
+<div><label>Minutos</label><input id="minutes" type="number" min="0" value="5"></div>
+<div><label>Segundos</label><input id="seconds" type="number" min="0" max="59" value="0"></div>
+</div>
+</section>
 
-  <section class="timer">
-    <small>TEMPO RESTANTE</small>
-    <div id="clock">05:00</div>
-  </section>
+<div class="grid">
+<section class="panel">
+<h2>🔴 Participante 1</h2>
+<label>Nome</label>
+<input id="name0" value="PARTICIPANTE 1">
+<label>Foto de perfil</label>
+<input id="photo0" type="file" accept="image/*">
+<img id="preview0" class="preview" alt="Foto 1">
+<label>Cor</label>
+<input id="color0" type="color" value="#ef4444">
+<label>Comando de voto no chat</label>
+<input id="command0" value="13">
+<label>Presentes e pontos</label>
+<textarea id="gifts0">Rosa|1
+Presente|5</textarea>
+<small>Um por linha. Formato: nome|pontos</small>
+</section>
 
-  <section class="battle">
+<section class="panel">
+<h2>🔵 Participante 2</h2>
+<label>Nome</label>
+<input id="name1" value="PARTICIPANTE 2">
+<label>Foto de perfil</label>
+<input id="photo1" type="file" accept="image/*">
+<img id="preview1" class="preview" alt="Foto 2">
+<label>Cor</label>
+<input id="color1" type="color" value="#3b82f6">
+<label>Comando de voto no chat</label>
+<input id="command1" value="22">
+<label>Presentes e pontos</label>
+<textarea id="gifts1">Rosa Branca|1
+Presente|5</textarea>
+<small>Um por linha. Formato: nome|pontos</small>
+</section>
+</div>
 
-    <article class="player red">
-      <img class="avatar"
-      src="https://placehold.co/150x150/ef4444/ffffff?text=1"
-      alt="Participante 1">
-      <div class="name" id="name1">PARTICIPANTE 1</div>
-      <div class="score" id="score1">0</div>
-      <div class="bar">
-        <div class="fill" id="bar1"></div>
-      </div>
-      <span class="percent" id="percent1">50%</span>
-    </article>
-
-    <article class="player blue">
-      <img class="avatar"
-      src="https://placehold.co/150x150/3b82f6/ffffff?text=2"
-      alt="Participante 2">
-      <div class="name" id="name2">PARTICIPANTE 2</div>
-      <div class="score" id="score2">0</div>
-      <div class="bar">
-        <div class="fill" id="bar2"></div>
-      </div>
-      <span class="percent" id="percent2">50%</span>
-    </article>
-
-  </section>
-
-  <section class="result">
-    <small>LÍDER ATUAL</small>
-    <div id="leader">AGUARDANDO VOTOS</div>
-  </section>
-
+<section class="panel">
+<h2>Controles da batalha</h2>
+<p>Status TikTok: <strong id="liveStatus">DESCONECTADO</strong></p>
+<p>Tempo: <strong id="adminTimer">00:05:00</strong></p>
+<button id="saveConfig" class="green">SALVAR CONFIGURAÇÕES</button>
+<button id="connectLive">CONECTAR TIKTOK LIVE</button>
+<div>
+<button id="startTimer" class="green">INICIAR</button>
+<button id="pauseTimer" class="secondary">PAUSAR</button>
+<button id="resumeTimer" class="secondary">CONTINUAR</button>
+<button id="resetTimer" class="secondary">REINICIAR TEMPO</button>
+<button id="resetScores" class="danger">ZERAR PONTOS</button>
+</div>
+<div id="message" class="message"></div>
+</section>
 </main>
-
-<footer>
-  MINI GIFT BATTLE © 2026
-</footer>
-
 <script src="/socket.io/socket.io.js"></script>
-<script>
-const socket = io();
-
-socket.on("state", data => {
-  const players = data.players || [];
-
-  if (players.length >= 2) {
-    const a = players[0];
-    const b = players[1];
-
-    const scoreA = Number(a.score || 0);
-    const scoreB = Number(b.score || 0);
-    const total = scoreA + scoreB;
-
-    document.getElementById("name1").textContent = a.name;
-    document.getElementById("name2").textContent = b.name;
-
-    document.getElementById("score1").textContent = scoreA;
-    document.getElementById("score2").textContent = scoreB;
-
-    const p1 = total ? scoreA / total * 100 : 50;
-    const p2 = total ? scoreB / total * 100 : 50;
-
-    document.getElementById("bar1").style.width = p1 + "%";
-    document.getElementById("bar2").style.width = p2 + "%";
-
-    document.getElementById("percent1").textContent = p1.toFixed(1) + "%";
-    document.getElementById("percent2").textContent = p2.toFixed(1) + "%";
-
-    document.getElementById("leader").textContent =
-      scoreA === scoreB ? "EMPATE" :
-      scoreA > scoreB ? a.name + " ESTÁ VENCENDO" :
-      b.name + " ESTÁ VENCENDO";
-
-    if (a.photo && a.photo.startsWith("data:image/"))
-      document.querySelector(".red .avatar").src = a.photo;
-
-    if (b.photo && b.photo.startsWith("data:image/"))
-      document.querySelector(".blue .avatar").src = b.photo;
-  }
-
-  if (data.timer) {
-    const seconds = Math.max(0, Number(data.timer.remaining || 0));
-    const min = Math.floor(seconds / 60);
-    const sec = seconds % 60;
-
-    document.getElementById("clock").textContent =
-      String(min).padStart(2, "0") + ":" +
-      String(sec).padStart(2, "0");
-  }
-});
-</script>
-
+<script src="/admin.js"></script>
 </body>
 </html>

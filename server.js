@@ -14,7 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const CONFIG = path.join(__dirname, "config.json");
 
 app.use(express.json({ limit: "8mb" }));

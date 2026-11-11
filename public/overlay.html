@@ -2,99 +2,67 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mini Gift Battle - Placar</title>
-<link rel="stylesheet" href="/style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b14">
+<title>Mini Gift Battle</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b14;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:25px 10px;border-bottom:1px solid #202638}
+.logo{font-size:clamp(20px,5vw,34px);font-weight:900;letter-spacing:2px}
+.logo span{color:#a855f7}
+.status{color:#22c55e;font-size:12px;letter-spacing:3px;margin-top:10px}
+.container{max-width:850px;margin:auto;padding:35px 15px}
+.timer{text-align:center;margin-bottom:45px}
+.timer small{color:#929bb0;letter-spacing:4px;font-size:14px}
+#clock{font-size:clamp(48px,11vw,78px);font-weight:900;margin-top:12px;font-variant-numeric:tabular-nums}
+.battle{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.player{background:#111725;border:1px solid #283248;border-radius:23px;padding:25px 14px;text-align:center;border-top:4px solid var(--color)}
+.avatar{width:clamp(75px,18vw,120px);height:clamp(75px,18vw,120px);border-radius:50%;object-fit:cover;background:#273248;border:3px solid var(--color)}
+.name{font-size:clamp(12px,3vw,20px);font-weight:bold;margin-top:17px;overflow-wrap:anywhere}
+.score{font-size:clamp(36px,8vw,60px);font-weight:900;color:var(--color);margin:24px 0}
+.track{height:12px;background:#252d40;border-radius:20px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--color);transition:width .4s}
+.percent{display:block;color:#929bb0;margin-top:13px;font-size:17px}
+.result{background:#111725;border:1px solid #283248;border-radius:20px;text-align:center;padding:25px 12px;margin-top:28px}
+.result small{color:#929bb0;letter-spacing:3px}
+#leader{font-size:clamp(17px,4vw,28px);font-weight:900;margin-top:15px}
+footer{text-align:center;color:#687187;font-size:12px;letter-spacing:3px;padding:35px 10px}
+@media(max-width:350px){.battle{gap:8px}.player{padding:18px 8px}}
+</style>
 </head>
-<body class="overlay-body">
-
-<main class="scoreboard">
-
-<header class="score-header">
-  <div>
-    <div class="eyebrow">TRANSMISSÃO AO VIVO</div>
-    <h1 id="boardTitle">ELEIÇÃO 2026 / INTERATIVO</h1>
-  </div>
-  <div class="live-pill"><span></span> AO VIVO</div>
+<body>
+<header>
+<div class="logo">MINI <span>GIFT</span> BATTLE</div>
+<div class="status">● LIVE INTERACTIVE</div>
 </header>
-
-<section class="summary-grid">
-  <div class="summary-card">
-    <small>TEMPO RESTANTE</small>
-    <strong id="timer">00:05:00</strong>
-  </div>
-  <div class="summary-card">
-    <small>TOTAL DE PONTOS</small>
-    <strong id="total">0</strong>
-  </div>
-  <div class="summary-card">
-    <small>DIFERENÇA</small>
-    <strong id="difference">0</strong>
-  </div>
-  <div class="summary-card">
-    <small>NA FRENTE</small>
-    <strong id="leader">EMPATE</strong>
-  </div>
+<main class="container">
+<section class="timer">
+<small>TEMPO RESTANTE</small>
+<div id="clock">05:00</div>
 </section>
-
-<section class="contestants">
-
-<article class="contestant" id="card0">
-  <div class="contestant-top">
-    <div class="candidate-photo" id="photo0">1</div>
-    <div class="candidate-info">
-      <small>PARTICIPANTE 01</small>
-      <h2 id="name0">PARTICIPANTE 1</h2>
-      <div class="command">VOTE: <b id="command0">13</b></div>
-    </div>
-  </div>
-  <div class="score" id="score0">0</div>
-  <div class="score-caption">PONTOS</div>
-  <div class="progress-track">
-    <div id="bar0" class="progress-fill"></div>
-  </div>
-  <div class="percentage" id="percent0">0%</div>
-  <div class="gift-heading">PRESENTES QUE VALEM PONTOS</div>
-  <div class="gift-list" id="gifts0"></div>
+<section class="battle">
+<article class="player" id="player0" style="--color:#ef4444">
+<img class="avatar" id="photo0" src="https://placehold.co/150x150/ef4444/ffffff?text=1" alt="Participante 1">
+<div class="name" id="name0">PARTICIPANTE 1</div>
+<div class="score" id="score0">0</div>
+<div class="track"><div class="fill" id="bar0"></div></div>
+<span class="percent" id="percent0">50%</span>
 </article>
-
-<article class="contestant" id="card1">
-  <div class="contestant-top">
-    <div class="candidate-photo" id="photo1">2</div>
-    <div class="candidate-info">
-      <small>PARTICIPANTE 02</small>
-      <h2 id="name1">PARTICIPANTE 2</h2>
-      <div class="command">VOTE: <b id="command1">22</b></div>
-    </div>
-  </div>
-  <div class="score" id="score1">0</div>
-  <div class="score-caption">PONTOS</div>
-  <div class="progress-track">
-    <div id="bar1" class="progress-fill"></div>
-  </div>
-  <div class="percentage" id="percent1">0%</div>
-  <div class="gift-heading">PRESENTES QUE VALEM PONTOS</div>
-  <div class="gift-list" id="gifts1"></div>
+<article class="player" id="player1" style="--color:#3b82f6">
+<img class="avatar" id="photo1" src="https://placehold.co/150x150/3b82f6/ffffff?text=2" alt="Participante 2">
+<div class="name" id="name1">PARTICIPANTE 2</div>
+<div class="score" id="score1">0</div>
+<div class="track"><div class="fill" id="bar1"></div></div>
+<span class="percent" id="percent1">50%</span>
 </article>
-
 </section>
-
-<section class="activity-panel">
-  <div class="activity-title">
-    <div>
-      <div class="eyebrow">ATUALIZAÇÕES</div>
-      <h2>Últimas atividades</h2>
-    </div>
-    <span id="connectionStatus">AGUARDANDO</span>
-  </div>
-  <div id="activity" class="activity-list">
-    <div class="empty">Aguardando votos e presentes...</div>
-  </div>
+<section class="result">
+<small>LÍDER ATUAL</small>
+<div id="leader">AGUARDANDO VOTOS</div>
 </section>
-
-<footer>MINI GIFT BATTLE · PLACAR EM TEMPO REAL</footer>
 </main>
-
+<footer>MINI GIFT BATTLE © 2026</footer>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/overlay.js"></script>
 </body>
