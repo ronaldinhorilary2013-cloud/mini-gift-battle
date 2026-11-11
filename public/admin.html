@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b14">
+<title>Mini Gift Battle - ADMIN</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080b14;color:#f8fafc;font-family:Arial,sans-serif;padding:18px}
+main{max-width:850px;margin:auto}
+header,.panel,.player{background:#111725;border:1px solid #283248;border-radius:17px;padding:19px;margin-bottom:16px}
+h1{font-size:24px;letter-spacing:1px}
+h1 span{color:#a855f7}
+.sub{color:#929bb0;font-size:12px;margin-top:8px}
+h2{font-size:17px;margin-bottom:15px}
+h3{font-size:14px;margin:15px 0 10px;color:#aab5ca}
+label{display:block;color:#aab5ca;font-size:12px;margin:12px 0 6px}
+input,textarea{width:100%;background:#080e1a;border:1px solid #344158;border-radius:10px;padding:12px;color:white;font-size:14px;outline:none}
+input:focus,textarea:focus{border-color:#a855f7}
+input[type=color]{height:45px;padding:5px}
+input[type=file]{font-size:12px}
+textarea{min-height:100px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{border:0;border-radius:10px;padding:13px 15px;font-weight:bold;color:white;background:#334155;font-size:13px}
+button:active{opacity:.75}
+.primary{background:#7c3aed}
+.green{background:#15803d}
+.red{background:#b91c1c}
+.blue{background:#1d4ed8}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.photo{width:90px;height:90px;border-radius:50%;object-fit:cover;background:#283248;display:block;margin:10px 0}
+.status{font-size:12px;color:#aab5ca;margin-top:12px;overflow-wrap:anywhere}
+.timer{font-size:25px;font-weight:bold;color:#93c5fd;margin:8px 0}
+.links a{display:block;color:#c4b5fd;margin-top:12px;overflow-wrap:anywhere}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.actions{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>MINI <span>GIFT BATTLE</span> ADMIN</h1>
+<div class="sub">PAINEL DE CONTROLE • CONFIGURAÇÃO DO OVERLAY</div>
+<div class="status">CONEXÃO: <b id="liveStatus">CARREGANDO...</b></div>
+<div class="timer" id="adminTimer">00:05:00</div>
+</header>
+
+<section class="panel">
+<h2>Configuração da transmissão</h2>
+<label>Título exibido no overlay</label>
+<input id="title" maxlength="100" placeholder="Ex.: ELEIÇÃO 2026 / INTERATIVO">
+<label>Usuário do TikTok (sem @)</label>
+<input id="username" placeholder="Digite o usuário da LIVE">
+<label>Tempo da disputa</label>
+<div class="grid">
+<div><label>Horas</label><input id="hours" type="number" min="0" value="0"></div>
+<div><label>Minutos</label><input id="minutes" type="number" min="0" value="5"></div>
+<div><label>Segundos</label><input id="seconds" type="number" min="0" value="0"></div>
+</div>
+</section>
+
+<section class="player">
+<h2>Participante 1</h2>
+<label>Nome</label><input id="name0" placeholder="Participante 1">
+<label>Cor do participante</label><input id="color0" type="color" value="#ef4444">
+<label>Comando de voto no chat</label><input id="command0" placeholder="13">
+<label>Foto do participante</label><input id="photo0" type="file" accept="image/*">
+<img id="preview0" class="photo" alt="Prévia da foto">
+<label>Presentes e pontos — um por linha (nome|pontos)</label>
+<textarea id="gifts0" placeholder="Rosa|1&#10;Presente|5"></textarea>
+</section>
+
+<section class="player">
+<h2>Participante 2</h2>
+<label>Nome</label><input id="name1" placeholder="Participante 2">
+<label>Cor do participante</label><input id="color1" type="color" value="#3b82f6">
+<label>Comando de voto no chat</label><input id="command1" placeholder="22">
+<label>Foto do participante</label><input id="photo1" type="file" accept="image/*">
+<img id="preview1" class="photo" alt="Prévia da foto">
+<label>Presentes e pontos — um por linha (nome|pontos)</label>
+<textarea id="gifts1" placeholder="Rosa Branca|1&#10;Presente|5"></textarea>
+</section>
+
+<section class="panel">
+<h2>Salvar configurações</h2>
+<button class="primary" id="saveConfig" style="width:100%">SALVAR CONFIGURAÇÕES</button>
+<div class="status" id="message">Aguardando...</div>
+</section>
+
+<section class="panel">
+<h2>Controle do cronômetro</h2>
+<div class="actions">
+<button class="green" id="startTimer">INICIAR</button>
+<button id="pauseTimer">PAUSAR</button>
+<button class="blue" id="resumeTimer">CONTINUAR</button>
+<button class="red" id="resetTimer">REINICIAR</button>
+</div>
+</section>
+
+<section class="panel">
+<h2>Controle da LIVE</h2>
+<button class="primary" id="connectLive" style="width:100%">CONECTAR AO TIKTOK LIVE</button>
+<button class="red" id="resetScores" style="width:100%;margin-top:10px">ZERAR PONTUAÇÃO</button>
+</section>
+
+<section class="panel links">
+<h2>Endereços do sistema</h2>
+<a href="/overlay" target="_blank">ABRIR OVERLAY DA LIVE</a>
+<a href="/admin">ABRIR PAINEL ADMINISTRATIVO</a>
+</section>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/admin.js"></script>
+</body>
+</html>
