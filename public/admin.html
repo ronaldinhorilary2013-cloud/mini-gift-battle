@@ -2,25 +2,25 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080b14">
-<title>Mini Gift Battle - ADMIN</title>
+<title>Mini Gift Battle | Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#080b14;color:#f8fafc;font-family:Arial,sans-serif;padding:18px}
+body{background:#080b14;color:#f8fafc;font-family:Arial,sans-serif;padding:16px}
 main{max-width:850px;margin:auto}
 header,.panel,.player{background:#111725;border:1px solid #283248;border-radius:17px;padding:19px;margin-bottom:16px}
-h1{font-size:24px;letter-spacing:1px}
+h1{font-size:23px;letter-spacing:1px}
 h1 span{color:#a855f7}
-.sub{color:#929bb0;font-size:12px;margin-top:8px}
 h2{font-size:17px;margin-bottom:15px}
-h3{font-size:14px;margin:15px 0 10px;color:#aab5ca}
+h3{font-size:14px;margin:17px 0 10px;color:#c4b5fd}
+.sub{color:#929bb0;font-size:12px;margin-top:8px}
 label{display:block;color:#aab5ca;font-size:12px;margin:12px 0 6px}
-input,textarea{width:100%;background:#080e1a;border:1px solid #344158;border-radius:10px;padding:12px;color:white;font-size:14px;outline:none}
-input:focus,textarea:focus{border-color:#a855f7}
+input,textarea,select{width:100%;background:#080e1a;border:1px solid #344158;border-radius:10px;padding:12px;color:white;font-size:14px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:#a855f7}
 input[type=color]{height:45px;padding:5px}
 input[type=file]{font-size:12px}
-textarea{min-height:100px;resize:vertical}
+textarea{min-height:85px;resize:vertical}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 button{border:0;border-radius:10px;padding:13px 15px;font-weight:bold;color:white;background:#334155;font-size:13px}
 button:active{opacity:.75}
@@ -33,22 +33,29 @@ button:active{opacity:.75}
 .status{font-size:12px;color:#aab5ca;margin-top:12px;overflow-wrap:anywhere}
 .timer{font-size:25px;font-weight:bold;color:#93c5fd;margin:8px 0}
 .links a{display:block;color:#c4b5fd;margin-top:12px;overflow-wrap:anywhere}
-@media(max-width:520px){.grid{grid-template-columns:1fr}.actions{grid-template-columns:1fr 1fr}}
+.gift-row{display:grid;grid-template-columns:1fr 125px 42px;gap:8px;margin-bottom:9px;align-items:center}
+.gift-row input,.gift-row select{min-width:0}
+.gift-row button{padding:12px 8px;background:#7f1d1d}
+.add-gift{width:100%;margin:8px 0 14px;background:#263754}
+.hint{font-size:11px;color:#929bb0;margin-top:7px;line-height:1.5}
+.player-title{display:flex;align-items:center;justify-content:space-between}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:7px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.gift-row{grid-template-columns:1fr 100px 40px}.actions{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <main>
 <header>
 <h1>MINI <span>GIFT BATTLE</span> ADMIN</h1>
-<div class="sub">PAINEL DE CONTROLE • CONFIGURAÇÃO DO OVERLAY</div>
+<div class="sub">PAINEL DE CONTROLE • CONFIGURAÇÃO DA LIVE</div>
 <div class="status">CONEXÃO: <b id="liveStatus">CARREGANDO...</b></div>
 <div class="timer" id="adminTimer">00:05:00</div>
 </header>
 
 <section class="panel">
 <h2>Configuração da transmissão</h2>
-<label>Título exibido no overlay</label>
-<input id="title" maxlength="100" placeholder="Ex.: ELEIÇÃO 2026 / INTERATIVO">
+<label>Título da LIVE</label>
+<input id="title" maxlength="100" placeholder="Mini Gift Battle">
 <label>Usuário do TikTok (sem @)</label>
 <input id="username" placeholder="Digite o usuário da LIVE">
 <label>Tempo da disputa</label>
@@ -60,25 +67,41 @@ button:active{opacity:.75}
 </section>
 
 <section class="player">
-<h2>Participante 1</h2>
-<label>Nome</label><input id="name0" placeholder="Participante 1">
-<label>Cor do participante</label><input id="color0" type="color" value="#ef4444">
-<label>Comando de voto no chat</label><input id="command0" placeholder="13">
-<label>Foto do participante</label><input id="photo0" type="file" accept="image/*">
+<div class="player-title"><h2><span class="dot" style="background:#ef4444"></span>Participante 1</h2></div>
+<label>Nome do participante</label>
+<input id="name0" placeholder="Nome do participante 1">
+<label>Cor</label>
+<input id="color0" type="color" value="#ef4444">
+<label>Comando de voto no chat</label>
+<input id="command0" placeholder="13">
+<label>Foto do participante (máximo 2 MB)</label>
+<input id="photo0" type="file" accept="image/*">
 <img id="preview0" class="photo" alt="Prévia da foto">
-<label>Presentes e pontos — um por linha (nome|pontos)</label>
-<textarea id="gifts0" placeholder="Rosa|1&#10;Presente|5"></textarea>
+<label>Descrição informativa</label>
+<textarea id="description0" maxlength="500" placeholder="Ex.: 1x 🌹 = 5 pontos&#10;1x 💮 = 10 pontos"></textarea>
+<div class="hint">A descrição é apenas informativa. Ela não altera a pontuação.</div>
+<h3>Presentes e pontuação</h3>
+<div id="giftsEditor0"></div>
+<button class="add-gift" id="addGift0" type="button">+ ADICIONAR PRESENTE</button>
 </section>
 
 <section class="player">
-<h2>Participante 2</h2>
-<label>Nome</label><input id="name1" placeholder="Participante 2">
-<label>Cor do participante</label><input id="color1" type="color" value="#3b82f6">
-<label>Comando de voto no chat</label><input id="command1" placeholder="22">
-<label>Foto do participante</label><input id="photo1" type="file" accept="image/*">
+<div class="player-title"><h2><span class="dot" style="background:#3b82f6"></span>Participante 2</h2></div>
+<label>Nome do participante</label>
+<input id="name1" placeholder="Nome do participante 2">
+<label>Cor</label>
+<input id="color1" type="color" value="#3b82f6">
+<label>Comando de voto no chat</label>
+<input id="command1" placeholder="22">
+<label>Foto do participante (máximo 2 MB)</label>
+<input id="photo1" type="file" accept="image/*">
 <img id="preview1" class="photo" alt="Prévia da foto">
-<label>Presentes e pontos — um por linha (nome|pontos)</label>
-<textarea id="gifts1" placeholder="Rosa Branca|1&#10;Presente|5"></textarea>
+<label>Descrição informativa</label>
+<textarea id="description1" maxlength="500" placeholder="Ex.: 1x 🌹 = 5 pontos&#10;1x 💮 = 10 pontos"></textarea>
+<div class="hint">A descrição é apenas informativa. Ela não altera a pontuação.</div>
+<h3>Presentes e pontuação</h3>
+<div id="giftsEditor1"></div>
+<button class="add-gift" id="addGift1" type="button">+ ADICIONAR PRESENTE</button>
 </section>
 
 <section class="panel">
@@ -104,8 +127,8 @@ button:active{opacity:.75}
 </section>
 
 <section class="panel links">
-<h2>Endereços do sistema</h2>
-<a href="/overlay" target="_blank">ABRIR OVERLAY DA LIVE</a>
+<h2>Endereços</h2>
+<a href="/overlay" target="_blank">ABRIR PLACAR DA LIVE</a>
 <a href="/admin">ABRIR PAINEL ADMINISTRATIVO</a>
 </section>
 </main>
