@@ -2,106 +2,114 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080b14">
-<title>Mini Gift Battle - ADM</title>
+<title>Mini Gift Battle - ADMIN</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080b14;color:#fff;font-family:Arial,sans-serif;padding:18px}
-main{max-width:750px;margin:auto}
-header{padding:18px 0;border-bottom:1px solid #283248;margin-bottom:22px}
-h1{font-size:25px;margin:0}
+body{margin:0;background:#080b14;color:#f5f7ff;font-family:Arial,sans-serif;padding:18px}
+main{max-width:850px;margin:auto}
+header,.panel,.player{background:#111927;border:1px solid #29364d;border-radius:17px;padding:18px;margin-bottom:16px}
+h1{font-size:23px;margin:0 0 7px}
 h1 span{color:#a855f7}
-small,.muted{color:#929bb0}
-.panel{background:#111725;border:1px solid #283248;border-radius:16px;padding:18px;margin-bottom:16px}
-h2{font-size:17px;margin:0 0 16px}
-label{display:block;font-size:12px;color:#aab4c8;margin:13px 0 7px}
-input,textarea{width:100%;background:#080e1b;border:1px solid #303c53;border-radius:9px;padding:12px;color:white;font-size:15px}
+.sub,.muted{color:#94a3b8;font-size:13px}
+h2{font-size:17px;margin:0 0 15px}
+label{display:block;font-size:13px;color:#aab6ca;margin:13px 0 6px}
+input,textarea{width:100%;padding:12px;border:1px solid #334155;border-radius:10px;background:#0b1220;color:white;font-size:15px;outline:none}
 input[type=color]{height:45px;padding:4px}
-textarea{min-height:90px;resize:vertical}
+input[type=file]{font-size:12px}
+textarea{min-height:100px;resize:vertical}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-button{border:0;border-radius:10px;padding:13px;background:#7c3aed;color:white;font-weight:bold;font-size:14px;margin:5px 3px 5px 0}
-button.secondary{background:#27344a}
-button.danger{background:#b42335}
-button.green{background:#16834b}
-a{color:#a78bfa}
-.preview{width:75px;height:75px;border-radius:50%;object-fit:cover;background:#27344a;margin-top:10px}
-.message{color:#65e6a0;font-size:13px;margin-top:12px}
-@media(max-width:430px){.grid{grid-template-columns:1fr}}
+.player.red{border-top:3px solid #ef4444}
+.player.blue{border-top:3px solid #3b82f6}
+button{border:0;border-radius:10px;padding:13px 15px;color:white;font-weight:bold;font-size:14px;background:#334155;cursor:pointer}
+button.primary{background:#7c3aed}
+button.green{background:#15803d}
+button.redbtn{background:#b91c1c}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+#message{padding:12px;color:#a5b4fc;font-size:13px;overflow-wrap:anywhere}
+.preview{width:75px;height:75px;border-radius:50%;background:#263247;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-top:10px}
+.preview img{width:100%;height:100%;object-fit:cover}
+.clock{font-size:30px;font-weight:900;color:#93c5fd;text-align:center;margin:12px}
+a{color:#93c5fd}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.actions{grid-template-columns:1fr 1fr}body{padding:12px}}
 </style>
 </head>
 <body>
 <main>
 <header>
-<h1>MINI <span>GIFT</span> BATTLE</h1>
-<p class="muted">PAINEL ADMINISTRATIVO</p>
-<a href="/overlay" target="_blank">Abrir placar da LIVE ↗</a>
+<h1>MINI <span>GIFT BATTLE</span> — ADMIN</h1>
+<div class="sub">Painel de controle da transmissão</div>
+<div class="clock" id="adminTimer">00:05:00</div>
+<div class="muted">Conexão TikTok: <b id="liveStatus">DESCONECTADO</b></div>
 </header>
 
 <section class="panel">
-<h2>Configuração da transmissão</h2>
-<label>Título da batalha</label>
+<h2>Configuração da disputa</h2>
+<label>Título exibido na LIVE</label>
 <input id="title" value="MINI GIFT BATTLE">
-<label>Usuário do TikTok (sem @ opcional)</label>
-<input id="username" placeholder="usuario_tiktok">
-<label>Tempo da batalha</label>
+<label>Usuário do TikTok (sem ou com @)</label>
+<input id="username" placeholder="Ex.: usuario">
+<label>Duração do cronômetro</label>
 <div class="grid">
 <div><label>Horas</label><input id="hours" type="number" min="0" value="0"></div>
 <div><label>Minutos</label><input id="minutes" type="number" min="0" value="5"></div>
-<div><label>Segundos</label><input id="seconds" type="number" min="0" max="59" value="0"></div>
+<div><label>Segundos</label><input id="seconds" type="number" min="0" value="0"></div>
 </div>
 </section>
 
 <div class="grid">
-<section class="panel">
-<h2>🔴 Participante 1</h2>
+<section class="player red">
+<h2>Participante 1</h2>
 <label>Nome</label>
 <input id="name0" value="PARTICIPANTE 1">
-<label>Foto de perfil</label>
-<input id="photo0" type="file" accept="image/*">
-<img id="preview0" class="preview" alt="Foto 1">
 <label>Cor</label>
 <input id="color0" type="color" value="#ef4444">
 <label>Comando de voto no chat</label>
 <input id="command0" value="13">
-<label>Presentes e pontos</label>
+<label>Foto do participante</label>
+<input id="photo0" type="file" accept="image/*">
+<div class="preview" id="preview0">1</div>
+<label>Presentes e pontos (um por linha: Nome|Pontos)</label>
 <textarea id="gifts0">Rosa|1
 Presente|5</textarea>
-<small>Um por linha. Formato: nome|pontos</small>
 </section>
 
-<section class="panel">
-<h2>🔵 Participante 2</h2>
+<section class="player blue">
+<h2>Participante 2</h2>
 <label>Nome</label>
 <input id="name1" value="PARTICIPANTE 2">
-<label>Foto de perfil</label>
-<input id="photo1" type="file" accept="image/*">
-<img id="preview1" class="preview" alt="Foto 2">
 <label>Cor</label>
 <input id="color1" type="color" value="#3b82f6">
 <label>Comando de voto no chat</label>
 <input id="command1" value="22">
-<label>Presentes e pontos</label>
+<label>Foto do participante</label>
+<input id="photo1" type="file" accept="image/*">
+<div class="preview" id="preview1">2</div>
+<label>Presentes e pontos (um por linha: Nome|Pontos)</label>
 <textarea id="gifts1">Rosa Branca|1
 Presente|5</textarea>
-<small>Um por linha. Formato: nome|pontos</small>
 </section>
 </div>
 
 <section class="panel">
-<h2>Controles da batalha</h2>
-<p>Status TikTok: <strong id="liveStatus">DESCONECTADO</strong></p>
-<p>Tempo: <strong id="adminTimer">00:05:00</strong></p>
-<button id="saveConfig" class="green">SALVAR CONFIGURAÇÕES</button>
-<button id="connectLive">CONECTAR TIKTOK LIVE</button>
-<div>
-<button id="startTimer" class="green">INICIAR</button>
-<button id="pauseTimer" class="secondary">PAUSAR</button>
-<button id="resumeTimer" class="secondary">CONTINUAR</button>
-<button id="resetTimer" class="secondary">REINICIAR TEMPO</button>
-<button id="resetScores" class="danger">ZERAR PONTOS</button>
+<h2>Controles</h2>
+<div class="actions">
+<button class="primary" id="saveConfig">SALVAR CONFIGURAÇÕES</button>
+<button class="green" id="connectLive">CONECTAR TIKTOK</button>
+<button class="green" id="startTimer">INICIAR TEMPO</button>
+<button id="pauseTimer">PAUSAR</button>
+<button id="resumeTimer">CONTINUAR</button>
+<button id="resetTimer">REINICIAR TEMPO</button>
+<button class="redbtn" id="resetScores">ZERAR PONTOS</button>
 </div>
-<div id="message" class="message"></div>
+<div id="message">Pronto para configurar.</div>
+</section>
+
+<section class="panel">
+<h2>Placar da transmissão</h2>
+<div class="sub">Abra este endereço no OBS ou na transmissão:</div>
+<p><a href="/overlay" target="_blank">Abrir overlay da LIVE</a></p>
 </section>
 </main>
 <script src="/socket.io/socket.io.js"></script>

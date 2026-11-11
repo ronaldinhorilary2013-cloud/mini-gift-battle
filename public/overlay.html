@@ -2,33 +2,32 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080b14">
-<title>Mini Gift Battle</title>
+<title>Mini Gift Battle - LIVE</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#080b14;color:white;font-family:Arial,sans-serif}
-header{text-align:center;padding:25px 10px;border-bottom:1px solid #202638}
-.logo{font-size:clamp(20px,5vw,34px);font-weight:900;letter-spacing:2px}
+header{text-align:center;padding:22px 12px 26px;border-bottom:1px solid #252c3d}
+.logo{font-size:clamp(22px,5vw,38px);font-weight:900;letter-spacing:2px}
 .logo span{color:#a855f7}
-.status{color:#22c55e;font-size:12px;letter-spacing:3px;margin-top:10px}
-.container{max-width:850px;margin:auto;padding:35px 15px}
-.timer{text-align:center;margin-bottom:45px}
-.timer small{color:#929bb0;letter-spacing:4px;font-size:14px}
-#clock{font-size:clamp(48px,11vw,78px);font-weight:900;margin-top:12px;font-variant-numeric:tabular-nums}
-.battle{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.player{background:#111725;border:1px solid #283248;border-radius:23px;padding:25px 14px;text-align:center;border-top:4px solid var(--color)}
-.avatar{width:clamp(75px,18vw,120px);height:clamp(75px,18vw,120px);border-radius:50%;object-fit:cover;background:#273248;border:3px solid var(--color)}
-.name{font-size:clamp(12px,3vw,20px);font-weight:bold;margin-top:17px;overflow-wrap:anywhere}
-.score{font-size:clamp(36px,8vw,60px);font-weight:900;color:var(--color);margin:24px 0}
-.track{height:12px;background:#252d40;border-radius:20px;overflow:hidden}
-.fill{height:100%;width:0;background:var(--color);transition:width .4s}
-.percent{display:block;color:#929bb0;margin-top:13px;font-size:17px}
-.result{background:#111725;border:1px solid #283248;border-radius:20px;text-align:center;padding:25px 12px;margin-top:28px}
-.result small{color:#929bb0;letter-spacing:3px}
-#leader{font-size:clamp(17px,4vw,28px);font-weight:900;margin-top:15px}
-footer{text-align:center;color:#687187;font-size:12px;letter-spacing:3px;padding:35px 10px}
-@media(max-width:350px){.battle{gap:8px}.player{padding:18px 8px}}
+.status{color:#22c55e;margin-top:9px;letter-spacing:3px;font-size:12px;font-weight:bold}
+main{max-width:850px;margin:auto;padding:28px 15px}
+.timer{text-align:center;margin:15px 0 55px}
+.timer small,.result small{color:#929bb0;letter-spacing:4px;font-size:14px}
+#clock{font-size:clamp(48px,10vw,78px);font-weight:900;margin-top:12px;font-variant-numeric:tabular-nums}
+.battle{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.player{background:#111725;border:1px solid #283248;border-radius:25px;padding:28px 14px;text-align:center;min-width:0;border-top:5px solid var(--color)}
+.avatar{width:clamp(90px,18vw,130px);height:clamp(90px,18vw,130px);border-radius:50%;object-fit:cover;background:#252d40;margin-bottom:18px}
+.name{font-size:clamp(13px,2.7vw,21px);font-weight:bold;overflow-wrap:anywhere}
+.score{font-size:clamp(42px,8vw,62px);font-weight:900;margin:24px 0;color:var(--color);font-variant-numeric:tabular-nums}
+.bar{height:13px;background:#252d40;border-radius:20px;overflow:hidden}
+.fill{height:100%;width:50%;background:var(--color);transition:width .4s}
+.percent{display:block;margin-top:14px;font-size:18px;color:#929bb0}
+.result{margin-top:35px;padding:35px 15px;text-align:center;background:#111725;border:1px solid #283248;border-radius:25px}
+#leader{margin-top:15px;font-size:clamp(20px,4vw,34px);font-weight:900;overflow-wrap:anywhere}
+footer{text-align:center;padding:35px 10px;color:#687187;font-size:13px}
+@media(max-width:380px){main{padding:22px 10px}.battle{gap:9px}.player{padding:22px 9px;border-radius:19px}.timer{margin-bottom:38px}}
 </style>
 </head>
 <body>
@@ -36,7 +35,7 @@ footer{text-align:center;color:#687187;font-size:12px;letter-spacing:3px;padding
 <div class="logo">MINI <span>GIFT</span> BATTLE</div>
 <div class="status">● LIVE INTERACTIVE</div>
 </header>
-<main class="container">
+<main>
 <section class="timer">
 <small>TEMPO RESTANTE</small>
 <div id="clock">05:00</div>
@@ -46,14 +45,14 @@ footer{text-align:center;color:#687187;font-size:12px;letter-spacing:3px;padding
 <img class="avatar" id="photo0" src="https://placehold.co/150x150/ef4444/ffffff?text=1" alt="Participante 1">
 <div class="name" id="name0">PARTICIPANTE 1</div>
 <div class="score" id="score0">0</div>
-<div class="track"><div class="fill" id="bar0"></div></div>
+<div class="bar"><div class="fill" id="bar0"></div></div>
 <span class="percent" id="percent0">50%</span>
 </article>
 <article class="player" id="player1" style="--color:#3b82f6">
 <img class="avatar" id="photo1" src="https://placehold.co/150x150/3b82f6/ffffff?text=2" alt="Participante 2">
 <div class="name" id="name1">PARTICIPANTE 2</div>
 <div class="score" id="score1">0</div>
-<div class="track"><div class="fill" id="bar1"></div></div>
+<div class="bar"><div class="fill" id="bar1"></div></div>
 <span class="percent" id="percent1">50%</span>
 </article>
 </section>
